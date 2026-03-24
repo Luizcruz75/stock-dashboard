@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Dashboard de Ações 2025{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h4 class="fw-bold mb-0">
+    <i class="bi bi-bar-chart-line me-2"></i>Visão Geral — 2025
+  </h4>
+  <a href="/comparison" class="btn btn-outline-primary btn-sm">
+    <i class="bi bi-arrow-left-right me-1"></i>Ver Comparação
+  </a>
+</div>
+
+<!-- Cards de resumo -->
+<div class="row g-3 mb-4">
+  {% for card in cards %}
+  <div class="col-md-4">
+    <div class="card card-stock h-100" style="border-top: 4px solid {{ card.color }};">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <p class="text-muted small mb-1">{{ card.ticker }}</p>
+            <h5 class="card-title fw-bold mb-0">{{ card.name }}</h5>
+          </div>
+          <a href="/stock/{{ card.ticker }}" class="btn btn-sm btn-outline-secondary">
+            <i class="bi bi-zoom-in"></i>
+          </a>
+        </div>
+        <hr class="my-2" />
+        <div class="row text-center g-2 mt-1">
+          <div class="col-6">
+            <p class="small text-muted mb-0">Preço Atual</p>
+            <p class="fw-bold mb-0">{{ card.preco_atual }}</p>
+          </div>
+          <div class="col-6">
+            <p class="small text-muted mb-0">Retorno YTD</p>
+            <p class="fw-bold mb-0 {% if card.retorno_valor is defined and card.retorno_valor >= 0 %}text-success{% else %}text-danger{% endif %}">
+              {{ card.retorno_ytd }}
+            </p>
+          </div>
+          <div class="col-6">
+            <p class="small text-muted mb-0">Máxima</p>
+            <p class="mb-0">{{ card.maxima }}</p>
+          </div>
+          <div class="col-6">
+            <p class="small text-muted mb-0">Mínima</p>
+            <p class="mb-0">{{ card.minima }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Gráfico de preços -->
+<div class="card shadow-sm">
+  <div class="card-body p-3">
+    <div id="price-chart" style="height: 450px;">
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="spinner-border text-secondary" role="status">
+          <span class="visually-hidden">Carregando...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const priceData = {{ price_chart | tojson }};
+  Plotly.newPlot('price-chart', priceData.data, priceData.layout, {responsive: true});
+</script>
+{% endblock %}

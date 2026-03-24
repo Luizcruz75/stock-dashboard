@@ -1,0 +1,85 @@
+/* ========================================================
+   Dashboard de Ações 2025 — Estilos Customizados
+   ======================================================== */
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+/* Navbar */
+.navbar-brand {
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+}
+
+.navbar .nav-link {
+  font-size: 0.9rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.navbar .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.navbar .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.15);
+  font-weight: 600;
+}
+
+/* Cards de ações */
+.card-stock {
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.card-stock:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Tabs */
+.nav-tabs .nav-link {
+  color: #495057;
+  border-radius: 8px 8px 0 0;
+  font-size: 0.9rem;
+}
+
+.nav-tabs .nav-link.active {
+  font-weight: 600;
+  color: #0d6efd;
+}
+
+/* Plotly charts — garante responsividade */
+.js-plotly-plot {
+  width: 100% !important;
+}
+
+/* Footer */
+footer {
+  font-size: 0.8rem;
+  color: #adb5bd;
+}
+
+/* Badges de ticker na navbar */
+.navbar .nav-link[style] {
+  margin-right: 2px;
+}
+
+/* Botões de ação coloridos */
+.btn-stock {
+  color: #fff;
+  border: none;
+  font-size: 0.85rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* Spinner overlay */
+#chart-spinner {
+  background: transparent;
+}
