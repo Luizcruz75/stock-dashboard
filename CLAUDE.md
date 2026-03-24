@@ -40,3 +40,30 @@ This is a Brazilian stock market dashboard built with Flask, tracking PETR4.SA, 
 ### Frontend
 
 Templates extend `base.html`, which loads Bootstrap 5.3, Bootstrap Icons, and Plotly.js from CDN. `dashboard.js` handles responsive Plotly chart resizing on window resize.
+
+## GitHub Repository
+
+Repositório: https://github.com/Luizcruz75/stock-dashboard
+
+### Sincronização automática
+
+Todo arquivo editado ou criado pelo Claude Code é automaticamente commitado e enviado ao GitHub via hook `PostToolUse` configurado em `.claude/settings.json`.
+
+O hook executa após cada operação de escrita (`Write|Edit`):
+```bash
+git add -A && git commit -m "Auto-update: <timestamp>" && git push
+```
+
+### Configuração inicial (se clonar em outra máquina)
+
+```bash
+git clone https://github.com/Luizcruz75/stock-dashboard.git
+cd stock-dashboard
+pip install -r requirements.txt
+python app.py
+```
+
+O remote já está configurado com autenticação via token no repositório local. Se precisar reconfigurar:
+```bash
+git remote set-url origin https://<TOKEN>@github.com/Luizcruz75/stock-dashboard.git
+```
